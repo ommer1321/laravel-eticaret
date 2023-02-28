@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('catagories', function (Blueprint $table) {
+        
+            $table->id();
+            
+            $table->string('name');
+            $table->string('slug');
+            $table->longText('description');
+            $table->string('image')->nullable();
+
+            $table->string('meta_title');
+            $table->string('meta_keyword');
+            $table->mediumText('meta_description');
+
+            $table->enum('status',[1,0])->default(0)->comment('1 = aktif , 0 = pasif');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('catagories');
+    }
+};
