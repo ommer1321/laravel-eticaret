@@ -15,24 +15,18 @@
    
     
 
-                                        {{-- Template Links  --}}
-    
-    <!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                                        {{-- Template Links  --}} 
 
-    <!-- COMMON CSS -->
-	<link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
-	<link href="{{asset('frontend/css/vendors.css')}}" rel="stylesheet">
+                               <!-- ======= All CSS Plugins here ======== -->
+  <link rel="stylesheet" href="{{asset('/app/css/plugins/swiper-bundle.min.css')}}">
+  <link rel="stylesheet" href="{{asset('app/css/plugins/glightbox.min.css')}}">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
-    <!-- REVOLUTION SLIDER CSS -->
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend/rev-slider-files/fonts/font-awesome/css/font-awesome.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend/rev-slider-files/css/settings.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend/rev-slider-files/css/layers.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('frontend/rev-slider-files/css/navigation.css')}}">
-
-	<!-- CUSTOM CSS -->
-	<link href="{{asset('frontend/css/custom.css')}}" rel="stylesheet">
+  <!-- Plugin css -->
+  <link rel="stylesheet" href="{{asset('app/css/vendor/bootstrap.min.css')}}">
+  
+  <!-- Custom Style CSS -->
+  <link rel="stylesheet" href="{{asset('app/css/style.css')}}">
 
                                          {{-- Template Links  --}}
 
@@ -50,94 +44,92 @@
     @livewireStyles
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+   
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    <!-- Start preloader -->
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="animation-preloader">
+              
+                <div class="txt-loading">
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                    
+                    <span data-text-preloader="S" class="letters-loading">
+                        S
+                    </span>
+                    
+                    <span data-text-preloader="Y" class="letters-loading">
+                        Y
+                    </span>
+                    
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                    
+                    <span data-text-preloader="Z" class="letters-loading">
+                        Z
+                    </span>
+                    
+                    <span data-text-preloader="I" class="letters-loading">
+                        I
+                    </span>
+                    
+                    <span data-text-preloader="L" class="letters-loading">
+                        L
+                    </span>
+                    <span data-text-preloader="I" class="letters-loading">
+                        I
+                    </span>
+                    <span data-text-preloader="M" class="letters-loading">
+                        M
+                    </span>
                 </div>
-            </div>
-        </nav>
+            </div>	
 
-   
-            @yield('content')
-  
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
     </div>
+    <!-- End preloader -->
 
-
-
-
-    <!-- Common scripts -->
-
-    <script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
-    
-    {{-- <script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script> --}}
-    <script src="{{asset('assets/js/common_scripts_min.js')}}"></script>
-    <script src="{{asset('assets/js/functions.js')}}"></script>
-    
-    <!-- SLIDER REVOLUTION SCRIPTS  -->
-    <script src="{{asset('frontend/rev-slider-files/js/jquery.themepunch.tools.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/jquery.themepunch.revolution.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/extensions/revolution.extension.actions.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/extensions/revolution.extension.migration.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/extensions/revolution.extension.navigation.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
-    <script src="{{asset('frontend/rev-slider-files/js/extensions/revolution.addon.slicey.min.js')}}"></script>
-
-
-    <!--Scripts-->
-  
-    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- Start header area -->
    
+<!-- Header -->
+@include('layouts.inc.app.header-1')
+<!-- End Header -->
+
+
+
+
+    @yield('content')
+
+ <!-- Scroll top bar -->
+ <button aria-label="scroll top btn" id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292"/></svg></button>
     
+ 
+
+
+
+
+
+
+
+
+
+
+  <!-- All Script JS Plugins here  -->
+  <script src="{{asset('app/js/vendor/popper.js')}}" defer="defer"></script>
+  <script src="{{asset('app/js/vendor/bootstrap.min.js')}}" defer="defer"></script>
+
+  <script src="{{asset('app/js/plugins/swiper-bundle.min.js')}}" defer="defer"></script>
+  <script src="{{asset('app/js/plugins/glightbox.min.js')}}" defer="defer"></script>
+
+  <!-- Customscript js -->
+  <script src="{{asset('app/js/script.js')}}" defer="defer"></script>
+  
+
 @yield('script')
 
 @livewireScripts
