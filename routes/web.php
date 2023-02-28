@@ -34,6 +34,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Auth Contol
 Route::group(['middleware' => ['auth']], function () {
+//New PAges
+Route::get('/deneme', function () {
+    return view('app.deneme');
+});
+// 
+
+
+
+
+
     //WishList Routes 
     Route::get('/wishlist', [App\Http\Controllers\App\WishlistController::class, 'index'])->name('index.wishlist');
     //CartRoutes
