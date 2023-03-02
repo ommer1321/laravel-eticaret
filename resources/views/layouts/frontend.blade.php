@@ -112,7 +112,7 @@
 
 
 
-
+ @include('layouts.inc.app.footer-1')
 
 
 

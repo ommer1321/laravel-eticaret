@@ -1,157 +1,156 @@
-@extends('layouts.app')
+@extends('layouts.frontend')
 
 @section('title')
-Category Page
+    Kategoriler
 @endsection
 
 @section('css')
-
 @endsection
 
 @section('style')
 @endsection
 
 
-<!-- Mobile menu overlay mask -->
-
-
-
 
 @section('content')
 
-<section class="parallax-window" data-parallax="scroll" data-image-src="img/hotels_bg.jpg" data-natural-width="1400" data-natural-height="470">
-    <div class="parallax-content-1 opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
-        <div class="animated fadeInDown">
-            <h1>Kategoriler</h1>
-            <p>Cursus neque cursus curae ante scelerisque vehicula.</p>
-        </div>
-    </div>
-</section>
-<!-- End section -->
 
-<main>
-    <div id="position">
-        <div class="container">
-            <ul>
-                <li><a href="#">Home</a>
-                </li>
-                <li><a href="#">Category</a>
-                </li>
-                <li>Page active</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Position -->
+    <main class="main__content_wrapper">
 
-    <div class="collapse" id="collapseMap">
-        <div id="map" class="map"></div>
-    </div>
-    <!-- End Map -->
+        <!-- Start breadcrumb section -->
 
-    <div class="container margin_60">
-        <div class="row">
-         
-            <!--End aside -->
 
-            <div class="col-lg-12">
-
-           
-                <!--End tools -->
-
-            
-            
-            
+        <!-- Start shop section -->
+        <section class="shop__section section--padding">
+            <div class="container">
                 <div class="row">
-                    @if ($categories)
-                    @foreach ($categories as $category )
-                        
-                    
-                    <div class="col-md-4 wow zoomIn" data-wow-delay="0.2s">
-                        <div class="hotel_container">
-                          
-                            <div class="img_container">
-                                <a href="{{route('list.category.app',$category->slug)}}">
-                                    <img src="{{asset('uploads/category/'.$category->image)}}" width="800" height="533" class="img-fluid" alt="Image">
-                                    {{-- <div class="score"><span>a</span>Adet Ürün Var</div> --}}
-                                 
-                                </a>
-                            </div>
-                            <div class="hotel_title">
-                                <h3><strong>{{$category->name}}</strong></h3>
-                                <div class="rating">
-                                    <small>{{$category->description}}</small>
-                                </div>
-                                <!-- end rating -->
-                                <div class="wishlist">
-                                    <a class="tooltip_flip tooltip-effect-1" href="{{route('list.category.app',$category->slug)}}">+<span class="tooltip-content-flip"><span class="tooltip-back">Ürünleri Gör</span></span></a>
-                                </div>
-                                <!-- End wish list-->
-                            </div>
-                        </div>
-                        <!-- End box -->
-                    </div>
-                    <!-- End col-md-6 -->
-           
-                    @endforeach
-                    
-                    @else
-                   <div class="col-md-6 wow zoomIn" data-wow-delay="0.2s">
-                        No Result
-                        </div>
-                    @endif
-                    
-                  
-                    
-                </div>
-                <!-- End row -->
-                
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><span class="page-link">1</span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- end pagination-->
 
-            </div>
-            <!-- End col lg 9 -->
-        </div>
-        <!-- End row -->
-    </div>
-    <!-- End container -->
-</main>
-<!-- End main -->
+                    <div class="col-12">
+                        <div
+                            class="shop__header shop__header--style2 bg__gray--color d-flex align-items-center justify-content-between mb-30">
+
+                            <div class="product__view--mode__list">
+                                <div
+                                    class="product__tab--one product__grid--column__buttons d-flex justify-content-center">
+
+                                    <p class="product__showing--count"><b>{{$categories->count()}} </b> Kategori Bulunmaktadır.</p>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="shop__product--wrapper">
+                        <div class="tab_content">
+                            <div id="product_grid" class="tab_pane active show">
+                                <div class="product__section--inner product__grid--inner">
+                                    <div class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 mb--n30">
+                                        @if ($categories)
+                                            @foreach ($categories as $category)
+                                                <div class="col custom-col-2 mb-30">
+                                                    <article class="product__card">
+                                                        <div class="product__card--thumbnail">
+                                                            <a class="product__card--thumbnail__link display-block"
+                                                                href="#">
+                                                                <img class="product__card--thumbnail__img product__primary--img display-block"
+                                                                    src="{{asset('uploads/category/'.$category->image)}}"
+                                                                    alt="product-img">
+                                                                <img class="product__card--thumbnail__img product__secondary--img display-block"
+                                                                    src="{{asset('uploads/category/'.$category->image)}}"
+                                                                    alt="product-img">
+                                                            </a>
+                                                            <ul
+                                                                class="product__card--action d-flex align-items-center justify-content-center">
+                                                            
+                                                                
+                                                            </ul>
+                                                         
+                                                        </div>
+                                                        <div class="product__card--content text-center">
+                                                            <span class="product__card--meta__tag"></span>
+                                                            <h3 class="product__card--title"><a
+                                                                    href="{{route('list.category.app',$category->slug)}}">{{$category->name}} </a></h3>
+                                                            <div class="product__card--price">
+                                                            
+                                                            </div>
+                                                            <a class="product__card--btn primary__btn" href="{{route('list.category.app',$category->slug)}}">Kategoriyi Gör</a>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <div class="col-12">
+                                                <div
+                                                    class="shop__header shop__header--style2 bg__gray--color d-flex align-items-center justify-content-between mb-30">
+
+                                                    <div class="product__view--mode__list">
+                                                        <div
+                                                            class="product__tab--one product__grid--column__buttons d-flex justify-content-center">
+
+                                                            <div class="alert alert-danger"> No Result</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+
+
+
+
+                                    </div>
+                                    <div class="pagination__area bg__gray--color">
+                                        <nav class="pagination justify-content-center">
+                                            <ul
+                                                class="pagination__wrapper d-flex align-items-center justify-content-center">
+                                                <li class="pagination__list">
+                                                    <a href="shop.html" class="pagination__item--arrow  link ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22.51"
+                                                            height="20.443" viewBox="0 0 512 512">
+                                                            <path fill="none" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="48"
+                                                                d="M244 400L100 256l144-144M120 256h292" />
+                                                        </svg>
+                                                        <span class="visually-hidden">pagination arrow</span>
+                                                    </a>
+                                                <li>
+                                                <li class="pagination__list"><span
+                                                        class="pagination__item pagination__item--current">1</span></li>
+                                                <li class="pagination__list"><a href="shop.html"
+                                                        class="pagination__item link">2</a></li>
+                                                <li class="pagination__list"><a href="shop.html"
+                                                        class="pagination__item link">3</a></li>
+                                                <li class="pagination__list"><a href="shop.html"
+                                                        class="pagination__item link">4</a></li>
+                                                <li class="pagination__list">
+                                                    <a href="shop.html" class="pagination__item--arrow  link ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22.51"
+                                                            height="20.443" viewBox="0 0 512 512">
+                                                            <path fill="none" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="48"
+                                                                d="M268 112l144 144-144 144M392 256H100" />
+                                                        </svg>
+                                                        <span class="visually-hidden">pagination arrow</span>
+                                                    </a>
+                                                <li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+        <!-- End shop section -->
+
+    </main>
+
+
 
 
 @endsection
-
-
- 
-
-
-
-
-
-
-<!-- End main -->
-
-
-
-
 
 
 
@@ -160,10 +159,6 @@ Category Page
 
 
 @section('js')
-	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
-	<script src="{{asset('assets/js/map_hotels.js')}}"></script>
-	<script src="{{asset('assets/js/infobox.js')}}"></script>
 @endsection
 
 

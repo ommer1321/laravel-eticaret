@@ -32,13 +32,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //                              -----------------App Routes---------------
 
 
+
 //Auth Contol
 Route::group(['middleware' => ['auth']], function () {
-//New PAges
-Route::get('/deneme', function () {
-    return view('app.deneme');
-});
-// 
+
 
 
 
@@ -60,7 +57,12 @@ Route::get('/deneme', function () {
 
 
 
-//Home
+//Home Routes
+
+//New
+Route::get('/deneme',[App\Http\Controllers\App\HomeController::class, 'deneme']);
+// 
+
 Route::get('/', [App\Http\Controllers\App\HomeController::class, 'index'])->name('index.home');
 Route::get('/trends', [App\Http\Controllers\App\TrendController::class, 'index'])->name('index.trends');
 Route::get('/arrivals', [App\Http\Controllers\App\ArrivalController::class, 'index'])->name('index.arrivals');
@@ -77,10 +79,10 @@ Route::group(['prefix' => 'categories'], function () {
     Route::get('/{slug}', [App\Http\Controllers\App\CategoryConroller::class, 'listProductFromCategory'])->name('list.category.app');
 
 
-
     //Products Routes
     Route::get('/{category_slug}/{product_slug}', [App\Http\Controllers\App\ProductController::class, 'detailProduct'])->name('detail.product.app');
     // Tüm Ürünler Eklenecek
+    Route::get('/deneme/{category_slug}/{product_slug}',[App\Http\Controllers\App\HomeController::class, 'deneme']);
 
 
 

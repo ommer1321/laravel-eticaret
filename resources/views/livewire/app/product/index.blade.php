@@ -1,195 +1,74 @@
-<div class="row">   
+<div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 mb--n30">
 
-
-{{-- session Message Start --}}
-    @if (session()->has('message'))
-<div class="alert alert-info">{{session('message')}} ( To Login Click <a href="{{url('/login')}}"><strong>Here</strong></a> )</div>        
-    @endif
-   
-    @if (session()->has('existwish'))
-    <div class="alert alert-warning">{{session('existwish')}} </div>        
-        @endif
-
-        @if (session()->has('addwish'))
-        <div class="alert alert-success">{{session('addwish')}} </div>        
-            @endif
-{{-- session Message End--}}
-
-
-        <div class="items-sorting">
-            <div class="row">
-                <div class="col-6">
-                    <div class="results_shop">
-                        Showing <span class="text-danger">{{$products->count()}}</span> results
-                    </div>
-                </div>
-                
-                <div class="col-6">
-                    <div class="form-group">
-                        <select name="sort-by">
-                          
-                          @if($brandInputs)
-
-                              @foreach ($brandInputs as $itemBrand )
-                                  
-                              <option>{{$itemBrand}}</option>
-                              @endforeach
-
-                              @else
-
-                              <option>No Options</option>
-                            
-                              @endif
-                          
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        @if ($products)
+    @if ($products)
             
       
     @foreach ($products as $product)
            
-    <div class="shop-item col-lg-3 col-md-6 col-sm-6">
-        <div class="inner-box">
-            <div class="image-box">
-                <figure class="image">
-                    <a href="{{route('detail.product.app',[$category->slug,$product->slug])}}">
+    
+    <div class="col custom-col-2 mb-30">
+        <article class="product__card">
+            <div class="product__card--thumbnail product__swiper--column1 swiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                <div class="swiper-wrapper" id="swiper-wrapper-c485c883012fa510e" aria-live="polite" style="transform: translate3d(-375px, 0px, 0px); transition-duration: 0ms;"><div class="swiper-slide swiper-slide-duplicate swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="1" role="group" aria-label="2 / 2" style="width: 345px; margin-right: 30px;">
+                        <a class="product__card--thumbnail__link display-block" href="product-details.html">
+                            <img class="product__card--thumbnail__img product__primary--img display-block" src="assets/img/product/product5.webp" alt="1">
+                            <img class="product__card--thumbnail__img product__secondary--img display-block" src="assets/img/product/product6.webp" alt="2">
+                        </a>
+                        <div class="product__badge">
+                            <span class="product__badge--items sale"></span>
+                        </div>
+                    </div>
+                 @foreach ( $product->productImages as $productImage )
                      
-                        {{-- ommer1453 burada konrol hatası var Undefined
-                         array key 0 nekadar kontrol edersem edeyım
-                          tekrar bos dızı dondurup hatra alıyor --}}
-
-                          {{-- Düzeltidi --}}
-                          
-                     @if ($product->productImages->count() > 0)
-                     <img src="{{asset($product->productImages[0]->image)}}" alt="">
-            
-
-
-                     @endif
-                      
+                 <div class="swiper-slide swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="1" role="group" aria-label="2 / 2" style="width: 345px; margin-right: 30px;">
+                    <a class="product__card--thumbnail__link display-block" href="#">
+                        <img class="product__card--thumbnail__img product__primary--img display-block" src="{{asset($productImage->image)}}" alt="product-img">
+                        <img class="product__card--thumbnail__img product__secondary--img display-block" src="{{asset($productImage->image)}}" alt="product-img">
+                    </a>
+                   
+                   @if ($product->trend == 1)
+                       
+                   <div class="product__badge">
+                       <span class="product__badge--items sale">Trend</span>
+                    </div>
                     
-                
-                 
+                    @endif
 
+                </div>
+                @endforeach
+            
+                </div>
+                <ul class="product__card--action d-flex align-items-center justify-content-center">
+                    
+                    <li class="product__card--action__list">
+                       {{-- wire:click start --}}
+                        <a wire:click="addWishlist({{$product->id}})" class="product__card--action__btn" title="Favori" >
+                            <svg wire:loading.remove class="product__card--action__btn--svg" xmlns="http://www.w3.org/2000/svg" width="25.51" height="22.443" viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg>
+                            <span  class="visually-hidden" >Wishlist</span> 
+                            <span wire:loading wire:target='addWishlist' class="">+</span>
+                        </a>
+                        {{-- wire:click End --}}
+                    </li>
 
-                    </figure>
-                <div class="item-options clearfix">
-                    <a href="" class="btn_shop"><span class="icon-basket"></span>
-                
-                    </a>
-                   {{-- wire:click start --}}
-                    <a wire:click="addWishlist({{$product->id}})" class="btn_shop" >
-                        <span wire:loading.remove class="icon-heart-8 "></span>
-                 
-                    <span wire:loading wire:target='addWishlist' class="icon-spin5 animate-spin text-white"></span>
-                </a>
-                {{-- wire:click End --}}
-                    <a href="" class="btn_shop"><span class="icon-eye"></span>
-                
-                    </a>
+                </ul>
+                <div class="swiper__nav--btn swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-c485c883012fa510e"></div>
+                <div class="swiper__nav--btn swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-c485c883012fa510e"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+            <div class="product__card--content text-center">
+                <span class="product__card--meta__tag">{{$product->category->name}}</span>
+                <h3 class="product__card--title"><a href="{{route('detail.product.app',[$category->slug,$product->slug])}}">{{$product->name}} </a></h3>
+                <div class="product__card--price">
+                    <span class="current__price">${{$product->selling_price}}</span>
+                    <span class="price__divided"></span>
+                    <span class="old__price"> ${{$product->original_price}}</span>
                 </div>
+                <a class="product__card--btn primary__btn" href="{{route('detail.product.app',[$category->slug,$product->slug])}}">İncele</a>
             </div>
-            <div class="product_description">
-                <div class="rating">
-                    <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-                </div>
-                <h3><a href="{{route('detail.product.app',[$category->slug,$product->slug])}}">{{$product->name}}</a></h3>
-                <div class="price">
-                    <span class="offer">${{$product->original_price}}</span> ${{$product->selling_price}}
-                </div>
-            </div>
-          
-            </a>
-        </div>
-        
+        </article>
     </div>
-    <!--End Shop Item-->
-
     @endforeach
     
-    @else
-    <div class="alert alert-danger"><strong>No Products</strong></div>
-    @endif                
+  
+    @endif   
+
 </div>
-
-
-   
-                        <!--End Shop Item-->
-                    </div>
-                    <!-- End col -->
-        
-                 
-                </div>
-        
-                 <!--Sidebar-->
-           <div class="col-lg-3 col-md-6 col-sm-6">
-            <aside class="sidebar">
-                <div class="widget">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                <button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-                </span>
-                    </div>
-                </div>
-                <!-- End Search -->
-                <hr>
-                <div class="widget" id="cat_shop">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="#">Places to visit</a>
-                        </li>
-                        <li><a href="#">Top tours</a>
-                        </li>
-                        <li><a href="#">Tips for travellers</a>
-                        </li>
-                        <li><a href="#">Events</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- End widget -->
-            
-                <hr>
-              
-                <div class="form-group">
-                  @foreach ($category->brands as $brandItem)
-                      
-                  <label class="container_check">
-                       {{Str::title($brandItem->name);}}
-              
-                       <input  wire:model="brandInputs[]" type="checkbox" value="{{$brandItem->id}}" >
-                       <span class="checkmark"></span> 
-                    </label>
-                    @endforeach
-                              
-                </div> 
-                
-          
-                <div class="filter_type">
-                    <h6>Sorting By</h6>
-                     <ul class="mb-0">
-                        <li>
-                            <label class="container_radio">
-                               High To Low
-                                <input type="radio" name="priceSort" wire:model="priceInputs"   value="high-to-low">
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="container_radio">
-                                Low To High
-                                <input type="radio" name="priceSort"  wire:model="priceInputs" value="low-to-high" >
-                                <span class="checkmark"></span>
-                            </label>
-                        </li>
-              
-                    </ul>
-                </div>
-                
-                </div>
