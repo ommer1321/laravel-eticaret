@@ -55,5 +55,13 @@ public function category(){
 
 
 
+    public function productBrand(){
+
+        return $this->belongsTo(Brand::class , 'brand','id');
+    
+    
+        }
+    
+    
 
 }

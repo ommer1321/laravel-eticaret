@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     //WishList Routes 
     Route::get('/wishlist', [App\Http\Controllers\App\WishlistController::class, 'index'])->name('index.wishlist');
+ 
+    Route::get('/deneme',[App\Http\Controllers\App\HomeController::class, 'deneme']);
+
+
     //CartRoutes
     Route::get('/cart', [App\Http\Controllers\App\CartController::class, 'index'])->name('index.cart');
     //Checkout Routes
@@ -59,9 +63,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 //Home Routes
 
-//New
-Route::get('/deneme',[App\Http\Controllers\App\HomeController::class, 'deneme']);
-// 
 
 Route::get('/', [App\Http\Controllers\App\HomeController::class, 'index'])->name('index.home');
 Route::get('/trends', [App\Http\Controllers\App\TrendController::class, 'index'])->name('index.trends');
@@ -82,8 +83,6 @@ Route::group(['prefix' => 'categories'], function () {
     //Products Routes
     Route::get('/{category_slug}/{product_slug}', [App\Http\Controllers\App\ProductController::class, 'detailProduct'])->name('detail.product.app');
     // Tüm Ürünler Eklenecek
-    Route::get('/deneme/{category_slug}/{product_slug}',[App\Http\Controllers\App\HomeController::class, 'deneme']);
-
 
 
 

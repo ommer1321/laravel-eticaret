@@ -129,6 +129,18 @@
   <!-- Customscript js -->
   <script src="{{asset('app/js/script.js')}}" defer="defer"></script>
   
+    <!-- Alertifyjs JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+
+        <script>
+        window.addEventListener('message', event => {
+        
+            alertify.set('notifier','position', 'bottom-left');
+            alertify.message(event.detail.text);
+        })
+        </script>
+    <!-- Alertifyjs JavaScript -->
 
 @yield('script')
 

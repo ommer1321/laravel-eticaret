@@ -256,7 +256,7 @@ else{
 
 public function render()
     {
-        return view('livewire.app.product.add-to-cart', 
+        return view('livewire.app.product.details', 
     [
         'product' => $this->product ,
         'category' => $this->category ,
