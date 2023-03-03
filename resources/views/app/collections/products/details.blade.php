@@ -28,26 +28,8 @@
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
-        <section class="breadcrumb__section breadcrumb__bg">
-            <div class="container">
-                <div class="row row-cols-1">
-                    <div class="col">
-                        <div class="breadcrumb__content">
-                            <h1 class="breadcrumb__content--title mb-10">{{ Str::title($product->name)}}</h1>
-                            <ul class="breadcrumb__content--menu d-flex">
-                                <li class="breadcrumb__content--menu__items"><a href="{{route('index.home')}}">Anasayfa</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text__secondary">Ürün Detayları</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End breadcrumb section -->
-        {{-- @foreach ($product->productImages as $productImage)
-        {{$productImage->image}}
-    @endforeach --}}
-        <!-- Start product details section -->
+      
+       
         <section class="product__details--section section--padding">
             <div class="container">
                 <div class="row row-cols-lg-2 row-cols-md-2 row-cols-1">

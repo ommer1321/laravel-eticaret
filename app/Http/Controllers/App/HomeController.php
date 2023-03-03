@@ -7,7 +7,9 @@ use App\Models\Catagory;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -32,34 +34,25 @@ public function search(Request $request){
 
     
   
-    public function deneme($category_slug,$product_slug){
+    public function deneme(){
+
+   
+        if(Auth::check()){
 
 
-        $category = Catagory::where('slug',$category_slug)->first() ?? abort(404,'Katagori Bulunamadı');
-        
-        
-        
-        if($category){
+    
+            $wishlist = Wishlist::where('user_id',auth()->user()->id)->get();
        
-                $product =$category->products->where('slug',$product_slug)->first() ?? abort(404,'Ürün Bulunamadı');
-       
-           if($product){
-   
-           return view('app.deneme',compact('category','product'));
-   
-           }else{
+            return view('app.deneme',compact('wishlist'));
            
-               return redirect()->back();
-   
-           }
+       }else{
+       
+           redirect()->url('/login');
+       
+       
        }
-       else{
-   
-           return redirect()->back();
-   
-       }
-   
-   
+       
+       
    
    }
 

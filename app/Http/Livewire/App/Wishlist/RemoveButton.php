@@ -31,11 +31,12 @@ public function deleteWish(){
                //WishCount'u Tetikliyor 
                $this->emit('emitAddToWish');
             //    dd($this->wishproduct);
+           
 
       }else{
 
         $this->dispatchBrowserEvent('message', [
-            'text' => 's ',
+            'text' => 'Silme işlemi Başarısız ',
             'type' => 'success',
             'status' => 200,
         ]);
@@ -50,6 +51,6 @@ public function deleteWish(){
     {
         
         return view('livewire.app.wishlist.remove-button');
-        
+    
     }
 }

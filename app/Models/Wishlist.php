@@ -28,5 +28,10 @@ class Wishlist extends Model
     
     
         }
+        public function productColor(){
 
+            return $this->hasmany(ProductColor::class , 'product_id','id');
+        
+        
+            }
 }

@@ -15,7 +15,10 @@ class Index extends Component
 
     
     public function mount($wishproduct ) {
+        
         $this->wishproduct = $wishproduct;
+        $this->wishproduct = Wishlist::where('user_id',auth()->user()->id)->get();
+
         }
 
 
@@ -28,7 +31,7 @@ class Index extends Component
     public function render()
     {
 
-        $this->wishproduct = Wishlist::where('user_id',auth()->user()->id)->get();
+        $this->mount( $this->wishproduct);
         
         return view('livewire.app.wishlist.index',
         [
