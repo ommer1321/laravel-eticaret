@@ -43,8 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //WishList Routes 
     Route::get('/wishlist', [App\Http\Controllers\App\WishlistController::class, 'index'])->name('index.wishlist');
- 
-    Route::get('/deneme',[App\Http\Controllers\App\HomeController::class, 'deneme']);
+
 
 
     //CartRoutes
@@ -191,7 +190,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth']], functio
         Route::get('/{category_id}/delete/{product_id}', [App\Http\Controllers\Admin\ProductController::class, 'delete'])->name('delete.product');
         Route::post('/color/delete', [App\Http\Controllers\Admin\ProductController::class, 'deleteProdColor'])->name('delete.color.product');
         Route::post('/color/update', [App\Http\Controllers\Admin\ProductController::class, 'updateProdColor'])->name('update.color.product');
-        
+
         // Route::post('/color/edit/{prod_color_id}',[App\Http\Controllers\Admin\ProductController::class,'updateProdColor'])->name('update.prodColor.product');
 
         // Route::get('/test', [App\Http\Controllers\Admin\ProductController::class, 'test'])->name('test');
