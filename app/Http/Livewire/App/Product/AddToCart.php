@@ -109,7 +109,8 @@ if(Auth::check()){
                             ]);
 
                                 }else{
-
+                                    $this->emit('emitAddToCart');
+                                    $this->emit('emitBasket');
                             
                                     $cartProdcut = Cart::create([
 
@@ -127,8 +128,9 @@ if(Auth::check()){
                                             'status' => 404,
                                         ]);
 
+                                   
                                         $this->emit('emitAddToCart');
-
+                                        $this->emit('emitBasket');
 
 
                                     }else{

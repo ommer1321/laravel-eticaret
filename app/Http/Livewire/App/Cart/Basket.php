@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Livewire\App\Product;
+namespace App\Http\Livewire\App\Cart;
 
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class CartCount extends Component
+class Basket extends Component
 {
 
     public $cart, $cartCount, $cartItem_id;
-    protected $listeners = ['emitAddToCart' => 'emitAddToCart'];
+    protected $listeners = ['emitBasket' => 'emitBasket'];
 
 
-    public function emitAddToCart()
+    public function emitBasket()
     {
 
         //Bu fonksiyon emiti tetikliyor ve render çalıştırıyor  
@@ -26,10 +26,13 @@ class CartCount extends Component
         if ($cartItems) {
 
             foreach ($cartItems as $ıtem) {
-               Cart::where('id', $ıtem->id)->delete();
+                Cart::where('id', $ıtem->id)->delete();
             }
-
             if ($cartItems->empty()) {
+
+                $this->emit('emitAddToCart');
+                
+
                 $this->dispatchBrowserEvent('message', [
                     'text' => '   <i  style="color: red" class=" icon-trash voted"></i> Sepet Boşaltıldı  ',
                     'type' => 'success',
@@ -54,13 +57,16 @@ class CartCount extends Component
 
             $deletedCartItem = $cartItem->delete();
             if ($deletedCartItem) {
+                
                 $this->emit('emitAddToCart');
-                $this->emit('emitBasket');
+
+
                 $this->dispatchBrowserEvent('message', [
                     'text' => '   <i  style="color: red" class=" icon-trash voted"></i> Sepetten Ürün Silindi  ',
                     'type' => 'success',
                     'status' => 404,
                 ]);
+                
             } else {
 
 
@@ -73,9 +79,12 @@ class CartCount extends Component
         }
     }
 
+
+
     public function render()
     {
 
+      
 
         if (Auth::check()) {
 
@@ -87,7 +96,7 @@ class CartCount extends Component
 
 
 
-        return view('livewire.app.product.cart-count', [
+        return view('livewire.app.cart.basket', [
 
             'cart' =>  $this->cart,
             'cartCount' =>  $this->cartCount,
