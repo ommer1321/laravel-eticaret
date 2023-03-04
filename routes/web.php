@@ -22,7 +22,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Auth::routes();
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 
@@ -69,6 +69,7 @@ Route::get('/arrivals', [App\Http\Controllers\App\ArrivalController::class, 'ind
 
 //Search Routes
 Route::get('/search', [App\Http\Controllers\App\HomeController::class, 'search'])->name('search.home');
+Route::get('/deneme', [App\Http\Controllers\App\HomeController::class, 'deneme']);
 
 
 
@@ -107,9 +108,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth']], functio
 
 
     Route::get('/index', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-
-
-
     Route::get('/settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('index.setting');
     Route::post('/settings', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('store.setting');
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('index.user');

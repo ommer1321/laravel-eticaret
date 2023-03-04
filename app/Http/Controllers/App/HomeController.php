@@ -30,4 +30,16 @@ class HomeController extends Controller
         $searchRes = Product::where('name', 'LIKE', '%' . $request->s . '%')->where('status', '1')->latest()->paginate(6);
         return view('app.search.index', compact('searchRes'));
     }
+
+    public function deneme()
+    {
+
+      ;
+        return view('app.deneme');
+    }
+
+
+
+
+
 }
